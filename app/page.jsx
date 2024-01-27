@@ -15,7 +15,7 @@ import { ActivityProvider } from "@/providers/ActivityContext";
 import { NFTProvider } from "@/providers/NFTContext";
 import { WalletProvider } from "@/providers/WalletContext";
 import { useUserContext } from "@/providers/UserContext";
-import { UserProvider } from "@/providers/UserContext";
+
 const page = () => {
   // console.log("hello");
   const { address, data, balance } = useUserContext();
@@ -43,8 +43,8 @@ const page = () => {
       <ActivityProvider>
         <NFTProvider>
           <WalletProvider>
-            <div className="flex w-full mb-2 p-3 sm:justify-between px-20 border-b-2">
-              <div className="justify-end gap-2">
+            <div className="md:flex w-full mb-2 p-3 md:justify-between md:px-20 border-b-2">
+              <div className="md:justify-end gap-2 mb-4">
                 <Link href="/" className="flex flex-center">
                   <Image
                     src="/assets/images/logo.svg"
@@ -60,9 +60,8 @@ const page = () => {
                   ) : (
                     <p className="text-2xl font-bold text-center">demo.eth</p>
                   )}
-                  {/* <RiArrowDropDownLine className="text-2xl font-semibold" /> */}
                 </div>
-                <div className="flex gap-2">
+                <div className="flex gap-2 justify-center">
                   <p className="text-1xl font-semibold text-gray-300 text-center">
                     0 followers
                   </p>
@@ -71,7 +70,7 @@ const page = () => {
                   </p>
                 </div>
               </div>
-              <div className="w-[30%] justify-end">
+              <div className="w-full md:w-[30%] md:justify-end items-center">
                 <div className="flex gap-2 justify-end align-bottom px-3">
                   <div className="text-1xl font-semibold rounded-lg p-2 bg-purple-500 hover:bg-purple-600 text-white cursor-pointer ">
                     Follow
@@ -83,12 +82,12 @@ const page = () => {
                     <MdOutlineFileUpload />
                   </div>
                 </div>
-                <div className="m-3 p-3 bg-gray-400 rounded-xl">
-                  <p className="text-2xl text-gray-50">Net Worth</p>
-                  <p className="text-4xl text-gray-50 font-semibold">
+                <div className="m-3 p-3 bg-gray-400 rounded-xl overflow-hidden">
+                  <p className="text-1xl lg:text-2xl text-gray-50">Net Worth</p>
+                  <p className="text-2xl lg:text-4xl text-gray-50 font-semibold">
                     ${balance}
                   </p>
-                  <div className="flex gap-1 justify-start mt-2">
+                  <div className="hidden lg:flex gap-1 justify-start mt-2">
                     <div className="text-gray-50 bg-gray-300 hover:bg-gray-200 hover:text-purple-500 rounded-md px-2 py-1 cursor-pointer">
                       Wallet
                     </div>
@@ -102,18 +101,15 @@ const page = () => {
                 </div>
               </div>
             </div>
-            <div className="flex justify-start gap-4 w-full px-20 mt-0">
-              {/* <div
-                className="text-1xl font-bold rounded-md hover:bg-gray-200 p-2 hover:text-white cursor-pointer"
-                onClick={() => setActiveComponent("Overview")}
-              >
-                Overview
-              </div> */}
+
+
+            <div className="md:flex justify-start gap-4 w-full px-5 lg:px-20 mt-0">
+
               <div
                 className={`${
                   activeComponent === "Overview"
-                    ? "text-1xl font-bold rounded-md  bg-gray-500 p-2 text-white cursor-pointer"
-                    : "text-1xl font-bold rounded-md border border-gray-300 hover:border hover:bg-gray-300 p-2 cursor-pointer"
+                    ? "text-1xl font-bold rounded-md  bg-gray-500 p-2 text-white cursor-pointer my-2 md:my-0 shadow-md"
+                    : "text-1xl font-bold rounded-md border border-gray-300 hover:border hover:bg-gray-300 p-2 cursor-pointer my-2 md:my-0 shadow-md"
                 }`}
                 onClick={() => setActiveComponent("Overview")}
               >
@@ -122,8 +118,8 @@ const page = () => {
               <div
                 className={`${
                   activeComponent === "NFT"
-                    ? "text-1xl font-bold rounded-md  bg-gray-500 p-2 text-white cursor-pointer"
-                    : "text-1xl font-bold rounded-md border border-gray-300 hover:border hover:bg-gray-300 p-2 cursor-pointer"
+                    ? "text-1xl font-bold rounded-md  bg-gray-500 p-2 text-white cursor-pointer my-2 md:my-0 shadow-md"
+                    : "text-1xl font-bold rounded-md border border-gray-300 hover:border hover:bg-gray-300 p-2 cursor-pointer my-2 md:my-0 shadow-md"
                 }`}
                 onClick={() => setActiveComponent("NFT")}
               >
@@ -132,8 +128,8 @@ const page = () => {
               <div
                 className={`${
                   activeComponent === "Wallet"
-                    ? "text-1xl font-bold rounded-md  bg-gray-500 p-2 text-white cursor-pointer"
-                    : "text-1xl font-bold rounded-md border border-gray-300 hover:border hover:bg-gray-300 p-2 cursor-pointer"
+                    ? "text-1xl font-bold rounded-md  bg-gray-500 p-2 text-white cursor-pointer my-2 md:my-0 shadow-md"
+                    : "text-1xl font-bold rounded-md border border-gray-300 hover:border hover:bg-gray-300 p-2 cursor-pointer my-2 md:my-0 shadow-md"
                 }`}
                 onClick={() => setActiveComponent("Wallet")}
               >
@@ -142,8 +138,8 @@ const page = () => {
               <div
                 className={`${
                   activeComponent === "Activity"
-                    ? "text-1xl font-bold rounded-md  bg-gray-500 p-2 text-white cursor-pointer"
-                    : "text-1xl font-bold rounded-md border border-gray-300 hover:border hover:bg-gray-300 p-2 cursor-pointer"
+                    ? "text-1xl font-bold rounded-md  bg-gray-500 p-2 text-white cursor-pointer my-2 md:my-0 shadow-md"
+                    : "text-1xl font-bold rounded-md border border-gray-300 hover:border hover:bg-gray-300 p-2 cursor-pointer my-2 md:my-0 shadow-md"
                 }`}
                 onClick={() => setActiveComponent("Activity")}
               >
@@ -152,8 +148,8 @@ const page = () => {
               <div
                 className={`${
                   activeComponent === "Badges"
-                    ? "text-1xl font-bold rounded-md  bg-gray-500 p-2 text-white cursor-pointer"
-                    : "text-1xl font-bold rounded-md border border-gray-300 hover:border hover:bg-gray-300 p-2 cursor-pointer"
+                    ? "text-1xl font-bold rounded-md  bg-gray-500 p-2 text-white cursor-pointer my-2 md:my-0 shadow-md"
+                    : "text-1xl font-bold rounded-md border border-gray-300 hover:border hover:bg-gray-300 p-2 cursor-pointer my-2 md:my-0 shadow-md"
                 }`}
                 onClick={() => setActiveComponent("Badges")}
               >

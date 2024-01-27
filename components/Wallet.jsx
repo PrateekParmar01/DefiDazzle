@@ -7,7 +7,7 @@ const Wallet = () => {
   const {data}=useWalletContext();
   return (
     <div className="relative overflow-x-auto border border-gray-300 rounded-lg mb-10 shadow-md">
-       <p className="text-2xl font-bold px-4 py-2 bg-gray-200">Wallet</p>
+       <p className="text-2xl w-full font-bold px-4 py-2 bg-gray-200">Wallet</p>
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50  ">
           <tr>

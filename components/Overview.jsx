@@ -5,12 +5,12 @@ import Activity from './Activity'
 
 const Overview = () => {
   return (
-    <div className='flex gap-4'>
-      <div className='w-[50%] pl-20 pt-4'>
+    <div className='lg:flex gap-4'>
+      <div className='w:full lg:w-[50%] p-3 lg:pl-20 lgpt-4'>
         <Wallet/>
         <NFT/>
       </div>
-      <div className='w-[50%] pr-20 pt-4'>
+      <div className='w:full lg:w-[50%] p-3 lg:pr-20 lg:pt-4'>
         <Activity/>
       </div>
     </div>
