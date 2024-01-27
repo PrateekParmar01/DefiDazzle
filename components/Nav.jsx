@@ -4,8 +4,18 @@ import Image from "next/image";
 import { FaWallet } from "react-icons/fa";
 import { IoMdChatbubbles } from "react-icons/io";
 import { IoMdArrowDropdown } from "react-icons/io";
+import { useState } from "react";
+import { useUserContext } from "@/providers/UserContext";
 
-const Nav = () => {
+const Nav = ({ onSearch }) => {
+  const { data, balance } = useUserContext();
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    onSearch(searchTerm);
+    // console.log(searchTerm);
+  };
   return (
     <div className="flex w-full mb-2 p-3 justify-between border-b-2 sticky top-0 bg-white z-50">
       <div className="flex-center gap-4 justify-end">
@@ -19,7 +29,7 @@ const Nav = () => {
           />
           <p className="text-2xl font-bold">DeFiDazzle</p>
         </Link>
-        <form className="w-96">
+        <form className="w-96" onSubmit={handleSearchSubmit}>
           <label
             htmlFor="default-search"
             className= "mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -47,8 +57,10 @@ const Nav = () => {
             <input
               type="search"
               id="default-search"
-              className="block w-full p-4 ps-10 text-sm text-gray-600 border border-gray-900 rounded-lg bg-gray-50   dark:border-gray-300 dark:placeholder-gray-400 focus:outline-none font-semibold text-0.5xl"
+              className="block w-full p-4 ps-10 text-sm text-gray-600 border border-gray-900 rounded-lg bg-gray-50 dark:border-gray-300 dark:placeholder-gray-400 focus:outline-none font-semibold text-0.5xl"
               placeholder="Search accounts, NFTs, Tokens..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
               required
             />
             <button

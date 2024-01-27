@@ -1,27 +1,9 @@
+'use client'
 import React from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { CovalentClient } from "@covalenthq/client-sdk";
-import { useEffect, useState } from "react";
+import { useNFTContext } from "@/providers/NFTContext";
 
 const NFT = () => {
-  const [data, setData] = useState();
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const client = new CovalentClient(process.env.NEXT_PUBLIC_CLIENT_ID);
-        const resp = await client.NftService.getNftsForAddress(
-          "eth-mainnet",
-          "demo.eth"
-        );
-        setData(resp.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchData();
-  }, []);
-  // console.log(data);
+  const {data} = useNFTContext();
   return (
     <>
     <p className="text-2xl font-bold px-4 py-2 my-2 border-b-2 border-gray-300">NFTs</p>
@@ -59,7 +41,7 @@ const NFT = () => {
           </div>
         </div>
       ))}
-      <button className="justify-end bg-gray-200 p-2 rounded-md hover:bg-white hover:border-2 hover:text-gray-500">Show More</button>
+      <button className="justify-end bg-gray-200 p-2 rounded-md hover:bg-white border-2 hover:text-gray-500">Show More</button>
     </div>
     </>
   );
