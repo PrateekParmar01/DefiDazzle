@@ -60,7 +60,7 @@ const page = () => {
                   ) : (
                     <p className="text-2xl font-bold text-center">demo.eth</p>
                   )}
-                  <RiArrowDropDownLine className="text-2xl font-semibold" />
+                  {/* <RiArrowDropDownLine className="text-2xl font-semibold" /> */}
                 </div>
                 <div className="flex gap-2">
                   <p className="text-1xl font-semibold text-gray-300 text-center">

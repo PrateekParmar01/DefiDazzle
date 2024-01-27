@@ -35,8 +35,8 @@ const Wallet = () => {
                 {item.contract_ticker_symbol}
               </th>
               <td className="px-6 py-4">{item.quote_rate}</td>
-              <td className="px-6 py-4">{(Number(item.balance) * 1e-18).toFixed(3)}</td>
-              <td className="px-6 py-4">${(Number(item.balance) * 1e-18 * item.quote_rate).toFixed(3)}</td>
+              <td className="px-6 py-4">{(Number(item.balance) / Math.pow(10, item.contract_decimals)).toFixed(3)}</td>
+              <td className="px-6 py-4">${((Number(item.balance)* item.quote_rate) / Math.pow(10, item.contract_decimals)).toFixed(3)}</td>
             </tr>
           ))}
         </tbody>

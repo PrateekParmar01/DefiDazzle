@@ -38,7 +38,7 @@ export const ActivityProvider = ({ children }) => {
     // };
 
     fetchData();
-  }, [userAddress]);
+  }, [dataFetched,userAddress]);
 
   // Provide the context value to the children
   return (

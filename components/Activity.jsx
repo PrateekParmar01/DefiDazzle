@@ -25,13 +25,13 @@ const Activity = () => {
                   className="object-contain"
                 />
                 <div>
-                  <p className="text-purple-500">{item.from_address}</p>
+                  <p className="text-purple-500">{item.from_address.slice(0, 2)}...{item.from_address.slice(-2)}</p>
                   <p>Time Stamp</p>
                 </div>
               </div>
               <p>
                 Sent ${item.value} to{" "}
-                <span className="text-green-400">{item.to_address}</span>
+                <span className="text-green-400">{item.to_address.slice(0, 2)}...{item.to_address.slice(-2)}</span>
               </p>
             </div>
             <p className="p-2 border-b-2">
