@@ -15,6 +15,7 @@ const Nav = ({ onSearch }) => {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     onSearch(searchTerm);
+    setSearchTerm("")
     // console.log(searchTerm);
   };
 
