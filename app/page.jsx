@@ -22,7 +22,7 @@ const page = () => {
   // const [data, setData] = useState();
   // const [balance, setBalance] = useState();
   const [activeComponent, setActiveComponent] = useState("Overview");
-
+  // console.log(balance);
   const renderComponent = () => {
     switch (activeComponent) {
       case "NFT":
