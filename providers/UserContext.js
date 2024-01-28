@@ -15,31 +15,27 @@ export const UserProvider = ({ children, address }) => {
     const fetchData = async () => {
       try {
         const client = new CovalentClient(process.env.NEXT_PUBLIC_CLIENT_ID);
-        const resp =
-          await client.BalanceService.getHistoricalTokenBalancesForWalletAddress(
-            "eth-mainnet",
-            `${address}` || "demo.eth"
-          );
-
+        const resp = await client.BalanceService.getHistoricalTokenBalancesForWalletAddress("eth-mainnet",`${address}` || "demo.eth");
+  
         // Check if items array is defined and not empty
         if (resp.data.items && resp.data.items.length > 0) {
           setData(resp.data);
 
           // Calculate total usdBalance
           let totalUsdBalance = 0;
-
+          console.log(resp.data);
           for (const item of resp.data.items) {
             // Extract balance in ETH
             const exchangeRate = Math.pow(10, item.contract_decimals);
             const ethBalance = parseFloat(item.balance) / exchangeRate;
-
             // Convert balance to USD
             const usdBalance = ethBalance * item.quote_rate;
+            // console.log(item.quote_rate);
 
             // Add the usdBalance to the total
             totalUsdBalance += parseFloat(usdBalance);
           }
-
+          // console.log(totalUsdBalance);
           // Set the total usdBalance
           setBalance(totalUsdBalance.toFixed(3));
         } else {

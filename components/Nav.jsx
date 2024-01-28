@@ -92,7 +92,7 @@ const Nav = ({ onSearch }) => {
               </button>
             </div>
           </form>
-          <div className="hidden lg:flex cursor-pointer text-1xl font-semibold bg-inherit hover:bg-gray-400 rounded-md p-2 hover:text-white border border-gray-300 hover:border-inherit">
+          {/* <div className="hidden lg:flex cursor-pointer text-1xl font-semibold bg-inherit hover:bg-gray-400 rounded-md p-2 hover:text-white border border-gray-300 hover:border-inherit">
             Swap
           </div>
           <div className="hidden lg:flex cursor-pointer text-1xl font-semibold bg-inherit hover:bg-gray-400 rounded-md p-2 hover:text-white border border-gray-300 hover:border-inherit">
@@ -100,10 +100,10 @@ const Nav = ({ onSearch }) => {
           </div>
           <div className="hidden lg:flex cursor-pointer text-1xl font-semibold bg-inherit hover:bg-gray-400 rounded-md p-2 hover:text-white border border-gray-300 hover:border-inherit">
             Curate
-          </div>
+          </div> */}
         </div>
 
-        <div className="flex items-center justify-end gap-4">
+        {/* <div className="flex items-center justify-end gap-4">
           <div className="hidden lg:flex items-center cursor-pointer text-1xl font-semibold bg-inherit hover:bg-gray-400 rounded-md p-2 hover:text-white border border-gray-300 hover:border-inherit">
             <FaWallet />
           </div>
@@ -136,7 +136,7 @@ const Nav = ({ onSearch }) => {
               </li>
             </ul>
           )}
-        </div>
+        </div> */}
       </div>
       <form className="flex justify-center md:hidden w-full" onSubmit={handleSearchSubmit}>
         <div className="relative flex-center">
