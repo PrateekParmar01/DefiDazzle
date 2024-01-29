@@ -12,7 +12,7 @@ const NFT = ({ activeComponent, setActiveComponent }) => {
       <p className="text-2xl font-bold px-4 py-2 my-2 border-b-2 border-gray-300">
         NFTs
       </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
         {showData
           ? showData.map((item, index) => (
               <div
@@ -51,6 +51,7 @@ const NFT = ({ activeComponent, setActiveComponent }) => {
               </div>
             ))
           : null}
+      </div>
         {activeComponent === "NFT" ? null : (
           <Link
            href="/nft"
@@ -59,7 +60,6 @@ const NFT = ({ activeComponent, setActiveComponent }) => {
             Show More
           </Link>
         )}
-      </div>
     </>
   );
 };

@@ -24,7 +24,10 @@ export const ActivityProvider = ({ children }) => {
               to_address: resp.to_address,
               from_address: resp.from_address,
               value: resp.value,
+              image: resp.gas_metadata.logo_url,
+              date_time: resp.block_signed_at
             };
+            // console.log(newItem.date_time)
             newData.push(newItem);
           }
         } catch (error) {

@@ -7,10 +7,12 @@ const page = ({ activeComponent, setActiveComponent }) => {
 
   return (
     <ActivityProvider>
+      <div className='mx-5'>
         <Activity
         activeComponent="Activity"
         setActiveComponent={setActiveComponent}
       />
+      </div>
     </ActivityProvider>
   )
 }

@@ -6,10 +6,12 @@ import NFT from "@/components/NFT";
 const page = ({ activeComponent, setActiveComponent }) => {
   return (
     <NFTProvider>
+      <div className='mx-5'>
       <NFT
         activeComponent="NFT"
         setActiveComponent={setActiveComponent}
       />
+      </div>
     </NFTProvider>
   );
 };

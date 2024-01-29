@@ -6,10 +6,12 @@ import React from 'react'
 const page = ({ activeComponent, setActiveComponent }) => {
   return (
     <WalletProvider>
+      <div className='mx-5'>
         <Wallet
         activeComponent="Wallet"
         setActiveComponent={setActiveComponent}
       />
+      </div>
     </WalletProvider>
   )
 }
