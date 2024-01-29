@@ -72,7 +72,7 @@ const Activity = ({ activeComponent, setActiveComponent }) => {
                   </div>
                 </div>
                 <p>
-                  Sent ${item.value} to{" "}
+                  Sent ${(Number(item.value).toFixed(2) * Math.pow(10,-18) * (Number(item.exchange_rate)).toFixed(2)).toFixed(4) } to{" "}
                   <span className="text-green-400">
                     {item.to_address.slice(0, 2)}...
                     {item.to_address.slice(-2)}
@@ -80,9 +80,12 @@ const Activity = ({ activeComponent, setActiveComponent }) => {
                 </p>
               </div>
               <p className="p-2 border-b-2">
-                Received $ {item.value} as part of this transaction
+                Received ${(Number(item.value).toFixed(2) * Math.pow(10,-18) * (Number(item.exchange_rate)).toFixed(2)).toFixed(4) } as part of this transaction
               </p>
-              <div>__ IN</div>
+              {item.verdict==true? 
+                  <div className="text-1xl font-semibold text-green-500">Success</div>
+                  :<div className="text-1xl font-semibold text-red-600">Failed</div>
+              }
             </div>
           ))}
         </div>
@@ -90,7 +93,7 @@ const Activity = ({ activeComponent, setActiveComponent }) => {
       {activeComponent === "Activity" ? null : (
         <Link
           href="/activity"
-          className="justify-end bg-gray-200 p-2 rounded-md hover:bg-white border-2 hover:text-gray-500"
+          className="justify-end bg-gray-200 p-2 rounded-md hover:bg-white border-2 hover:text-gray-500 shadow-md"
         >
           Show More
         </Link>

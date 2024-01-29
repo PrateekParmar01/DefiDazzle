@@ -25,9 +25,11 @@ export const ActivityProvider = ({ children }) => {
               from_address: resp.from_address,
               value: resp.value,
               image: resp.gas_metadata.logo_url,
-              date_time: resp.block_signed_at
+              date_time: resp.block_signed_at,
+              verdict: resp.successful,
+              exchange_rate: resp.value_quote
             };
-            // console.log(newItem.date_time)
+            // console.log(newItem.exchange_rate)
             newData.push(newItem);
           }
         } catch (error) {
