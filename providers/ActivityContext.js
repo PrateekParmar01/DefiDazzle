@@ -25,7 +25,6 @@ export const ActivityProvider = ({ children }) => {
               from_address: resp.from_address,
               value: resp.value,
             };
-
             newData.push(newItem);
           }
         } catch (error) {

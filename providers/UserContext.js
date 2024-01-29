@@ -23,7 +23,7 @@ export const UserProvider = ({ children, address }) => {
 
           // Calculate total usdBalance
           let totalUsdBalance = 0;
-          console.log(resp.data);
+          // console.log(resp.data);
           for (const item of resp.data.items) {
             // Extract balance in ETH
             const exchangeRate = Math.pow(10, item.contract_decimals);
