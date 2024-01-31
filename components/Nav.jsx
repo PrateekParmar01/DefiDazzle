@@ -5,6 +5,7 @@ import { FaWallet } from "react-icons/fa";
 import { IoMdChatbubbles } from "react-icons/io";
 import { CiMenuKebab } from "react-icons/ci";
 import { useState } from "react";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 const Nav = ({ onSearch }) => {
   // const { data, balance } = useUserContext();
@@ -92,51 +93,62 @@ const Nav = ({ onSearch }) => {
               </button>
             </div>
           </form>
-          <div className="hidden lg:flex cursor-pointer text-1xl font-semibold bg-inherit hover:bg-gray-400 rounded-md p-2 hover:text-white border border-gray-300 hover:border-inherit">
-            Swap
-          </div>
-          <div className="hidden lg:flex cursor-pointer text-1xl font-semibold bg-inherit hover:bg-gray-400 rounded-md p-2 hover:text-white border border-gray-300 hover:border-inherit">
-            Bridge
-          </div>
-          <div className="hidden lg:flex cursor-pointer text-1xl font-semibold bg-inherit hover:bg-gray-400 rounded-md p-2 hover:text-white border border-gray-300 hover:border-inherit">
-            Curate
-          </div>
+          <SignedIn>
+            <div className="hidden lg:flex cursor-pointer text-1xl font-semibold bg-inherit hover:bg-gray-400 rounded-md p-2 hover:text-white border border-gray-300 hover:border-inherit">
+              Swap
+            </div>
+            <div className="hidden lg:flex cursor-pointer text-1xl font-semibold bg-inherit hover:bg-gray-400 rounded-md p-2 hover:text-white border border-gray-300 hover:border-inherit">
+              Bridge
+            </div>
+            <div className="hidden lg:flex cursor-pointer text-1xl font-semibold bg-inherit hover:bg-gray-400 rounded-md p-2 hover:text-white border border-gray-300 hover:border-inherit">
+              Curate
+            </div>
+          </SignedIn>
         </div>
+        <SignedIn>
+          <div className="flex items-center justify-end gap-4">
+            <div className="hidden lg:flex items-center cursor-pointer text-1xl font-semibold bg-inherit hover:bg-gray-400 rounded-md p-2 hover:text-white border border-gray-300 hover:border-inherit">
+              <FaWallet />
+            </div>
+            <div className="hidden lg:flex items-center cursor-pointer text-1xl font-semibold bg-inherit hover:bg-gray-400 rounded-md p-2 hover:text-white border border-gray-300 hover:border-inherit">
+              <IoMdChatbubbles />
+            </div>
+            <div className="hidden lg:flex items-center cursor-pointer text-1xl font-semibold bg-inherit hover:bg-gray-400 rounded-md p-2 hover:text-white border border-gray-300 hover:border-inherit">
+              Connect Wallet
+            </div>
 
-        <div className="flex items-center justify-end gap-4">
-          <div className="hidden lg:flex items-center cursor-pointer text-1xl font-semibold bg-inherit hover:bg-gray-400 rounded-md p-2 hover:text-white border border-gray-300 hover:border-inherit">
-            <FaWallet />
+            <div className="relative lg:hidden cursor-pointer font-semibold bg-inherit hover:bg-gray-400 rounded-md p-2  border border-gray-300 hover:border-inherit">
+              <CiMenuKebab onClick={toggleDropdown} />
+            </div>
+            {showDropdown && (
+              <ul className="absolute min-w-max  top-12 right-0 m-2 mt-4 space-y-2 border border-gray-300 bg-gray-50  rounded-md shadow-md">
+                <li className="px-4 py-2 cursor-pointer hover:bg-gray-400 hover:text-white">
+                  Swap
+                </li>
+                <li className="px-4 py-2 cursor-pointer hover:bg-gray-400 hover:text-white">
+                  Curate
+                </li>
+                <li className="px-4 py-2 cursor-pointer hover:bg-gray-400 hover:text-white">
+                  Bridge
+                </li>
+                <li className="px-4 py-2 cursor-pointer hover:bg-gray-400 hover:text-white">
+                  Connect Wallet
+                </li>
+                <li className="px-4 py-2 cursor-pointer hover:bg-gray-400 hover:text-white">
+                  Chat
+                </li>
+              </ul>
+            )}
+            <UserButton afterSignOutUrl="/"/>
           </div>
-          <div className="hidden lg:flex items-center cursor-pointer text-1xl font-semibold bg-inherit hover:bg-gray-400 rounded-md p-2 hover:text-white border border-gray-300 hover:border-inherit">
-            <IoMdChatbubbles />
-          </div>
-          <div className="hidden lg:flex items-center cursor-pointer text-1xl font-semibold bg-inherit hover:bg-gray-400 rounded-md p-2 hover:text-white border border-gray-300 hover:border-inherit">
-            Connect Wallet
-          </div>
-
-          <div className="relative lg:hidden cursor-pointer font-semibold bg-inherit hover:bg-gray-400 rounded-md p-2  border border-gray-300 hover:border-inherit">
-            <CiMenuKebab onClick={toggleDropdown} />
-          </div>
-          {showDropdown && (
-            <ul className="absolute min-w-max  top-12 right-0 m-2 mt-4 space-y-2 border border-gray-300 bg-gray-50  rounded-md shadow-md">
-              <li className="px-4 py-2 cursor-pointer hover:bg-gray-400 hover:text-white">
-                Swap
-              </li>
-              <li className="px-4 py-2 cursor-pointer hover:bg-gray-400 hover:text-white">
-                Curate
-              </li>
-              <li className="px-4 py-2 cursor-pointer hover:bg-gray-400 hover:text-white">
-                Bridge
-              </li>
-              <li className="px-4 py-2 cursor-pointer hover:bg-gray-400 hover:text-white">
-                Connect Wallet
-              </li>
-              <li className="px-4 py-2 cursor-pointer hover:bg-gray-400 hover:text-white">
-                Chat
-              </li>
-            </ul>
-          )}
-        </div>
+        </SignedIn>
+        <SignedOut>
+          <button type="button" className="outline_btn">
+            <Link href="/sign-in">
+              Login
+            </Link>
+          </button>
+        </SignedOut>
       </div>
       <form
         className="flex justify-center md:hidden w-full"
