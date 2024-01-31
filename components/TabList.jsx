@@ -12,7 +12,7 @@ const TabList = () => {
       <Link
         href='/overview'
         className={`${
-          pathname === "/overview"
+          pathname === "/overview" || pathname === "/"
             ? "text-1xl font-bold rounded-md  bg-gray-500 p-2 text-white cursor-pointer my-2 md:my-0 shadow-md"
             : "text-1xl font-bold rounded-md border border-gray-300 hover:border hover:bg-gray-300 p-2 cursor-pointer my-2 md:my-0 shadow-md"
         }`}

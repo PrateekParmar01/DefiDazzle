@@ -2,10 +2,15 @@
 import React, { useEffect, useState } from "react";
 import { useActivityContext } from "../providers/ActivityContext";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 const Activity = ({ activeComponent, setActiveComponent }) => {
   const { data } = useActivityContext();
   const [isLoading, setIsLoading] = useState(false);
   const [showData,setShowData]=useState();
+  const  pathname = usePathname()
+
+
   useEffect(() => {
     if (data.length === 0) {
       setIsLoading(true);
@@ -13,6 +18,7 @@ const Activity = ({ activeComponent, setActiveComponent }) => {
       setIsLoading(false);
     }
   }, [data]);
+
   useEffect(()=>{
     if(activeComponent === "Activity"){
       setShowData(data);
@@ -20,6 +26,7 @@ const Activity = ({ activeComponent, setActiveComponent }) => {
       setShowData(data.slice(0,7));
     }
   },[data])
+
   // const showData =
   //   activeComponent === "Activity" ? data?.items : data?.items?.slice(0, 7);
 
@@ -27,9 +34,9 @@ const Activity = ({ activeComponent, setActiveComponent }) => {
     <>
       <div className="w-full h-auto border border-gray-300 bg-white shadow-md rounded-md mb-5">
         <p className="text-2xl font-bold px-4 py-2 bg-gray-200">Activity</p>
-        <div className="w-full h-auto p-4">
+        <div className={`w-full h-auto p-4 ${pathname=='/activity'? 'md:grid md:grid-cols-2 md:gap-3':""}`}>
           {isLoading && (
-            <div role="status" className="flex items-center justify-center">
+            <div role="status" className={`flex items-center ${pathname=='/activity'?'justify-end':'justify-center'}`}>
               <svg
                 aria-hidden="true"
                 className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"

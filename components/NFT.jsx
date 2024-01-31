@@ -2,9 +2,12 @@
 import React, { useState } from "react";
 import { useNFTContext } from "@/providers/NFTContext";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 
 const NFT = ({ activeComponent, setActiveComponent }) => {
   const { data } = useNFTContext();
+  const pathname = usePathname();
   const showData =
     activeComponent === "NFT" ? data?.items : data?.items.slice(0, 9);
   return (
@@ -12,7 +15,7 @@ const NFT = ({ activeComponent, setActiveComponent }) => {
       <p className="text-2xl font-bold px-4 py-2 my-2 border-b-2 border-gray-300">
         NFTs
       </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+      <div className={`grid grid-cols-1 sm:grid-cols-2 ${pathname=='/nft'?"md:grid-cols-5":"md:grid-cols-3"} gap-4 mb-6`}>
         {showData
           ? showData.map((item, index) => (
               <div

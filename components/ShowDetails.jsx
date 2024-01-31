@@ -49,7 +49,7 @@ export default function ShowDetails() {
             <MdOutlineFileUpload />
           </div>
         </div>
-        <div className="m-3 p-3 bg-gray-400 rounded-xl overflow-hidden">
+        <div className="m-3 p-3 bg-gray-400 rounded-xl overflow-hidden shadow-xl">
           <p className="text-1xl lg:text-2xl text-gray-50">Net Worth</p>
           <p className="text-2xl lg:text-4xl text-gray-50 font-semibold">
             ${balance}
