@@ -8,7 +8,7 @@ const Hero = () => {
         <br className='max-md:hidden' />
         <span className='orange_gradient text-center'> NFTs,Badges,Tokens</span>
       </h1>
-      <p className='desc text-center'>
+      <p className='desc text-center p-4'>
         Seamless tracking, boundless possibilities - your crypto portfolio, reimagined.
         Charting the course of your success in the blockchain frontier
       </p>
