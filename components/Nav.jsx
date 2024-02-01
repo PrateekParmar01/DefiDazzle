@@ -163,10 +163,10 @@ const Nav = ({ onSearch }) => {
               </ul>
               
             )}
-          </div>
-          <button type='button' onClick={signOut} className='hidden lg:flex'>
+          <button type='button' onClick={signOut} className='hidden lg:flex items-center cursor-pointer text-1xl font-semibold bg-inherit hover:bg-gray-400 rounded-md p-2 hover:text-white border border-gray-300 hover:border-inherit'>
             Sign Out
           </button>
+          </div>
         </>
         ) : (
           <>
