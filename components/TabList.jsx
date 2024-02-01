@@ -1,14 +1,11 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { SignedIn } from "@clerk/nextjs";
 const TabList = () => {
   const pathname = usePathname();
   // console.log(pathname)
   return (
-    // <SignedIn>
       <div className="md:flex justify-start gap-4 w-full px-5 lg:px-20 mt-0 mb-4 ">
         <Link
           href="/overview"
@@ -61,7 +58,6 @@ const TabList = () => {
           Badges
         </Link>
       </div>
-    // </SignedIn>
   );
 };
 

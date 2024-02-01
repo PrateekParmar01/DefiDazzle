@@ -1,8 +1,9 @@
+import Badges from '@/components/Badges'
 import React from 'react'
 
 const badges = () => {
   return (
-    <div>badges</div>
+    <Badges/>
   )
 }
 

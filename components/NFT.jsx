@@ -1,17 +1,31 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import { useNFTContext } from "@/providers/NFTContext";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { signIn,useSession, getProviders } from "next-auth/react";
+import { useEffect} from "react";
 
 
 const NFT = ({ activeComponent, setActiveComponent }) => {
   const { data } = useNFTContext();
   const pathname = usePathname();
+  const { data: session } = useSession();
+  const [providers, setProviders] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      const res = await getProviders();
+      setProviders(res);
+    })();
+  }, []);
+
   const showData =
-    activeComponent === "NFT" ? data?.items : data?.items.slice(0, 9);
+  pathname === "/nft" ? data?.items : data?.items.slice(0, 9);
   return (
     <>
+      {session?.user ? (
+        <>
       <p className="text-2xl font-bold px-4 py-2 my-2 border-b-2 border-gray-300">
         NFTs
       </p>
@@ -55,7 +69,7 @@ const NFT = ({ activeComponent, setActiveComponent }) => {
             ))
           : null}
       </div>
-        {activeComponent === "NFT" ? null : (
+        {pathname === "/nft" ? null : (
           <Link
            href="/nft"
             className="justify-end bg-gray-200 p-2 rounded-md hover:bg-white border-2 hover:text-gray-500 shadow-md"
@@ -63,6 +77,39 @@ const NFT = ({ activeComponent, setActiveComponent }) => {
             Show More
           </Link>
         )}
+        </>
+      ):(
+        <>
+          {providers &&
+            Object.values(providers).map((provider,index) => (
+              <>
+                <section key={index} className="w-full flex-center flex-col">
+                  <h1 className="head_text text-center">
+                    Track & Share
+                    <br className="max-md:hidden" />
+                    <span className="orange_gradient text-center">
+                      {" "}
+                      NFTs,Badges,Tokens
+                    </span>
+                  </h1>
+                  <p className="desc text-center">
+                    SignIn to track your NFTs
+                  </p>
+                  <button
+                    type="button"
+                    key={provider.name}
+                    onClick={() => {
+                      signIn(provider.id);
+                    }}
+                    className="black_btn"
+                  >
+                    Sign in
+                  </button>
+                </section>
+              </>
+            ))}
+        </>
+      )}
     </>
   );
 };

@@ -11,16 +11,15 @@ export const NFTProvider = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // if (userData && userData.data && userData.data.address) {
-        const client = new CovalentClient(process.env.NEXT_PUBLIC_CLIENT_ID);
-        const resp = await client.NftService.getNftsForAddress(
-          "eth-mainnet",
-          userAddress || "demo.eth" // Use the user's address here
-        );
-        setData(resp.data);
-        // console.log(resp.data);
+        // if (userAddress) {
+          const client = new CovalentClient(process.env.NEXT_PUBLIC_CLIENT_ID);
+          const resp = await client.NftService.getNftsForAddress(
+            "eth-mainnet",
+            userAddress || "demo.eth" // Use the user's address here
+          );
+          setData(resp.data);
         // } else {
-        //   console.error("User data or address is not available");
+        //   console.error("User address is not available");
         // }
       } catch (error) {
         console.error("Error fetching NFT data:", error);

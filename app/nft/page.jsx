@@ -1,19 +1,20 @@
-'use client'
+// app/nft/page.jsx
+'use client';
 import { NFTProvider } from "@/providers/NFTContext";
 import React from "react";
 import NFT from "@/components/NFT";
 
-const page = ({ activeComponent, setActiveComponent }) => {
+const Page = ({ activeComponent, setActiveComponent }) => {
   return (
     <NFTProvider>
-      <div className='mx-5'>
-      <NFT
-        activeComponent="NFT"
-        setActiveComponent={setActiveComponent}
-      />
+      <div className="mx-5">
+          <NFT
+            activeComponent={activeComponent}
+            setActiveComponent={setActiveComponent}
+          />
       </div>
     </NFTProvider>
   );
 };
 
-export default page;
+export default Page;

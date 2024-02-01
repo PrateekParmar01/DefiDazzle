@@ -1,13 +1,16 @@
+"use client";
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { FaWallet } from "react-icons/fa";
 import { IoMdChatbubbles } from "react-icons/io";
 import { CiMenuKebab } from "react-icons/ci";
-import { useState } from "react";
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { useState, useEffect } from "react";
+import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const Nav = ({ onSearch }) => {
+  const { data: session } = useSession();
+  const [providers, setProviders] = useState(null);
   // const { data, balance } = useUserContext();
   const [searchTerm, setSearchTerm] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
@@ -18,6 +21,13 @@ const Nav = ({ onSearch }) => {
     setSearchTerm("");
     // console.log(searchTerm);
   };
+
+  useEffect(() => {
+    (async () => {
+      const res = await getProviders();
+      setProviders(res);
+    })();
+  }, []);
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -93,19 +103,24 @@ const Nav = ({ onSearch }) => {
               </button>
             </div>
           </form>
-          <SignedIn>
-            <div className="hidden lg:flex cursor-pointer text-1xl font-semibold bg-inherit hover:bg-gray-400 rounded-md p-2 hover:text-white border border-gray-300 hover:border-inherit">
-              Swap
-            </div>
-            <div className="hidden lg:flex cursor-pointer text-1xl font-semibold bg-inherit hover:bg-gray-400 rounded-md p-2 hover:text-white border border-gray-300 hover:border-inherit">
-              Bridge
-            </div>
-            <div className="hidden lg:flex cursor-pointer text-1xl font-semibold bg-inherit hover:bg-gray-400 rounded-md p-2 hover:text-white border border-gray-300 hover:border-inherit">
-              Curate
-            </div>
-          </SignedIn>
+          {session?.user ? (
+            <>
+              <div className="hidden lg:flex cursor-pointer text-1xl font-semibold bg-inherit hover:bg-gray-400 rounded-md p-2 hover:text-white border border-gray-300 hover:border-inherit">
+                Swap
+              </div>
+              <div className="hidden lg:flex cursor-pointer text-1xl font-semibold bg-inherit hover:bg-gray-400 rounded-md p-2 hover:text-white border border-gray-300 hover:border-inherit">
+                Bridge
+              </div>
+              <div className="hidden lg:flex cursor-pointer text-1xl font-semibold bg-inherit hover:bg-gray-400 rounded-md p-2 hover:text-white border border-gray-300 hover:border-inherit">
+                Curate
+              </div>
+            </>
+          ) : (
+            <></>
+          )}
         </div>
-        <SignedIn>
+        {session?.user ? (
+          <>
           <div className="flex items-center justify-end gap-4">
             <div className="hidden lg:flex items-center cursor-pointer text-1xl font-semibold bg-inherit hover:bg-gray-400 rounded-md p-2 hover:text-white border border-gray-300 hover:border-inherit">
               <FaWallet />
@@ -120,7 +135,9 @@ const Nav = ({ onSearch }) => {
             <div className="relative lg:hidden cursor-pointer font-semibold bg-inherit hover:bg-gray-400 rounded-md p-2  border border-gray-300 hover:border-inherit">
               <CiMenuKebab onClick={toggleDropdown} />
             </div>
+
             {showDropdown && (
+              <>
               <ul className="absolute min-w-max  top-12 right-0 m-2 mt-4 space-y-2 border border-gray-300 bg-gray-50  rounded-md shadow-md">
                 <li className="px-4 py-2 cursor-pointer hover:bg-gray-400 hover:text-white">
                   Swap
@@ -137,18 +154,38 @@ const Nav = ({ onSearch }) => {
                 <li className="px-4 py-2 cursor-pointer hover:bg-gray-400 hover:text-white">
                   Chat
                 </li>
+
               </ul>
+              <button type='button' onClick={signOut} className='hidden lg:flex outline_btn'>
+                Sign Out
+              </button>
+              </>
             )}
-            <UserButton afterSignOutUrl="/"/>
           </div>
-        </SignedIn>
-        <SignedOut>
-          
-            <Link href="/sign-in" className="flex items-center cursor-pointer text-1xl font-semibold bg-inherit hover:bg-gray-400 rounded-md p-2 hover:text-white border border-gray-300 hover:border-inherit shadow-md">
+          <button type='button' onClick={signOut} className='hidden lg:flex outline_btn'>
+            Sign Out
+          </button>
+        </>
+        ) : (
+          <>
+            {providers &&
+              Object.values(providers).map((provider) => (
+                <button
+                  type="button"
+                  key={provider.name}
+                  onClick={() => {
+                    signIn(provider.id);
+                  }}
+                  className="black_btn"
+                >
+                  Sign in
+                </button>
+              ))}
+          </>
+        )}
+        {/* <Link href="/sign-in" className="flex items-center cursor-pointer text-1xl font-semibold bg-inherit hover:bg-gray-400 rounded-md p-2 hover:text-white border border-gray-300 hover:border-inherit shadow-md">
               Login
-            </Link>
-          
-        </SignedOut>
+            </Link> */}
       </div>
       <form
         className="flex justify-center md:hidden w-full"

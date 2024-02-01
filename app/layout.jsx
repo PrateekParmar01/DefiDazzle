@@ -5,7 +5,7 @@ import Nav from "@/components/Nav";
 import ShowDetails from "@/components/ShowDetails";
 import { UserProvider } from "@/providers/UserContext";
 import TabList from "@/components/TabList";
-import { ClerkProvider } from "@clerk/nextjs";
+import Provider from "@/components/Provider";
 
 export default function RootLayout({ children }) {
   const [searchedAddress, setSearchedAddress] = useState("");
@@ -16,9 +16,9 @@ export default function RootLayout({ children }) {
   };
 
   return (
-    <ClerkProvider>
       <html lang="en">
         <body>
+          <Provider>
           <div className="main">
             <div className="background"></div>
           </div>
@@ -30,8 +30,8 @@ export default function RootLayout({ children }) {
               {children}
             </UserProvider>
           </div>
+          </Provider>
         </body>
       </html>
-    </ClerkProvider>
   );
 }
