@@ -80,7 +80,7 @@
 }
 
 .outline_btn {
-  @apply rounded-full border border-black bg-transparent py-1.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm  flex items-center justify-center;
+  @apply rounded-lg border border-black bg-transparent px-2 text-black transition-all hover:bg-black hover:text-white text-center text-sm  flex items-center justify-center;
 }
 
 .head_text {

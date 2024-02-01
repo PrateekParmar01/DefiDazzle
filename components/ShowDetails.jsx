@@ -39,13 +39,13 @@ export default function ShowDetails() {
       </div>
       <div className="w-full md:w-[30%] md:justify-end items-center">
         <div className="flex gap-2 justify-end align-bottom px-3">
-          <div className="text-1xl font-semibold rounded-lg p-2 bg-purple-500 hover:bg-purple-600 text-white cursor-pointer ">
+          <div className="text-1xl font-semibold rounded-lg p-2 bg-purple-500 hover:bg-purple-600 text-white cursor-pointer shadow-lg ">
             Follow
           </div>
-          <div className="text-1xl font-semibold rounded-md p-2 bg-gray-300 hover:bg-gray-400 text-white hover:text-gray-50 cursor-pointer">
+          <div className="text-1xl font-semibold rounded-lg p-2 bg-purple-500 hover:bg-purple-600 text-white cursor-pointer shadow-lg ">
             Send
           </div>
-          <div className="text-2xl font-bold rounded-md p-2 bg-gray-300 hover:bg-gray-400 text-white hover:text-gray-50 cursor-pointer">
+          <div className="text-2xl font-bold rounded-md p-2 bg-gray-400 hover:bg-gray-600 text-white hover:text-gray-50 cursor-pointer shadow-lg">
             <MdOutlineFileUpload />
           </div>
         </div>

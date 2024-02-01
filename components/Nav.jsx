@@ -143,11 +143,11 @@ const Nav = ({ onSearch }) => {
           </div>
         </SignedIn>
         <SignedOut>
-          <button type="button" className="outline_btn">
-            <Link href="/sign-in">
+          
+            <Link href="/sign-in" className="flex items-center cursor-pointer text-1xl font-semibold bg-inherit hover:bg-gray-400 rounded-md p-2 hover:text-white border border-gray-300 hover:border-inherit shadow-md">
               Login
             </Link>
-          </button>
+          
         </SignedOut>
       </div>
       <form

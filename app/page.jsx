@@ -6,6 +6,8 @@ import { ActivityProvider } from "@/providers/ActivityContext";
 import { NFTProvider } from "@/providers/NFTContext";
 import { WalletProvider } from "@/providers/WalletContext";
 import { useUserContext } from "@/providers/UserContext";
+import { SignedIn,SignedOut } from "@clerk/nextjs";
+import Hero from "@/components/Hero";
 
 const page = () => {
   const { address, data, balance } = useUserContext();
@@ -17,7 +19,12 @@ const page = () => {
       <ActivityProvider>
         <NFTProvider>
           <WalletProvider>
-            <Overview/>
+            <SignedIn>
+              <Overview/>
+            </SignedIn>
+            <SignedOut>
+              <Hero/>
+            </SignedOut>
           </WalletProvider>
         </NFTProvider>
       </ActivityProvider>
