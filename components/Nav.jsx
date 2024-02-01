@@ -137,7 +137,7 @@ const Nav = ({ onSearch }) => {
             </div>
 
             {showDropdown && (
-              <>
+        
               <ul className="absolute min-w-max  top-12 right-0 m-2 mt-4 space-y-2 border border-gray-300 bg-gray-50  rounded-md shadow-md">
                 <li className="px-4 py-2 cursor-pointer hover:bg-gray-400 hover:text-white">
                   Swap
@@ -154,15 +154,17 @@ const Nav = ({ onSearch }) => {
                 <li className="px-4 py-2 cursor-pointer hover:bg-gray-400 hover:text-white">
                   Chat
                 </li>
+                <li>
 
+                <button type='button' onClick={signOut} className='px-4 py-2 cursor-pointer hover:bg-gray-400 hover:text-white'>
+                  Sign Out
+                </button>
+                </li>
               </ul>
-              <button type='button' onClick={signOut} className='hidden lg:flex outline_btn'>
-                Sign Out
-              </button>
-              </>
+              
             )}
           </div>
-          <button type='button' onClick={signOut} className='hidden lg:flex outline_btn'>
+          <button type='button' onClick={signOut} className='hidden lg:flex'>
             Sign Out
           </button>
         </>
@@ -183,9 +185,6 @@ const Nav = ({ onSearch }) => {
               ))}
           </>
         )}
-        {/* <Link href="/sign-in" className="flex items-center cursor-pointer text-1xl font-semibold bg-inherit hover:bg-gray-400 rounded-md p-2 hover:text-white border border-gray-300 hover:border-inherit shadow-md">
-              Login
-            </Link> */}
       </div>
       <form
         className="flex justify-center md:hidden w-full"
